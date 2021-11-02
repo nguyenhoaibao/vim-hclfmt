@@ -22,14 +22,14 @@ function! fmt#Format()
     let l:tmpname = tempname()
     call writefile(getline(1, '$'), l:tmpname)
 
-    let fmt_command = "terragrunt hclfmt"
+    let fmt_command = "terragrunt"
 
     " populate the final command with user based fmt options
     " let command = fmt_command . ' -w ' . g:hcl_fmt_options
     let command = fmt_command
 
     " execute our command...
-    let out = system(command . " " . l:tmpname)
+    let out = system(command . " hclfmt " . l:tmpname)
 
     "if there is no error on the temp file replace the output with the current
     "file (if this fails, we can always check the outputs first line with:
